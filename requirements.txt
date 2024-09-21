@@ -7,4 +7,3 @@ matplotlib
 polars
 matplotlib
 IPython
-zipfile
