@@ -1,20 +1,19 @@
 '''This file reads a crime dataset based on LAPD.
 It produces summary statistics and a data visualization'''
 
-import polars as pl
 from zipfile import ZipFile
+import polars as pl
 import matplotlib.pyplot as plt
 from IPython.display import display
 
-zip_file = "Crime_Data_from_2020_to_Present.csv.zip"
+ZIP_FILE = "Crime_Data_from_2020_to_Present.csv.zip"
 
 df = pl.read_csv(
-    ZipFile(zip_file).read("Crime_Data_from_2020_to_Present.csv")
+    ZipFile(ZIP_FILE).read("Crime_Data_from_2020_to_Present.csv")
 )
 
 # Convert the time occurred column to accurate hour of the day 
     # with decimal representing accurate minute proportion of the hour
-df['TIME OCC']//100 + df['TIME OCC']%100/60
 df = df.with_columns((pl.col("TIME OCC")//100 + df['TIME OCC']%100/60).alias("TimeOccHr"))
 
 ## Show summary statistics of the dataframe.
