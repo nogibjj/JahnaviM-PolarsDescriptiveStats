@@ -3,11 +3,7 @@ pytest
 pytest-cov
 pylint
 
-numpy
 matplotlib
-
-pandas
-seaborn
+polars
 matplotlib
-plotly
 IPython
