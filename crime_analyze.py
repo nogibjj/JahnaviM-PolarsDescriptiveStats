@@ -8,11 +8,10 @@ from IPython.display import display
 
 ZIP_FILE = "Crime_Data_from_2020_to_Present.csv.zip"
 
-df = pl.read_csv(
-    ZipFile(ZIP_FILE).read("Crime_Data_from_2020_to_Present.csv")
-)
+with ZipFile(ZIP_FILE) as f:
+    df = pl.read_csv(f.read("Crime_Data_from_2020_to_Present.csv"))
 
-# Convert the time occurred column to accurate hour of the day 
+# Convert the time occurred column to accurate hour of the day
     # with decimal representing accurate minute proportion of the hour
 df = df.with_columns((pl.col("TIME OCC")//100 + df['TIME OCC']%100/60).alias("TimeOccHr"))
 
